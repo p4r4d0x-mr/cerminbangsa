@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cermin Bangsa — Sejarah sebagai Cermin Bangsa</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS & Lucide Icons CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root {
+      --ink: #17212b;
+      --paper: #f7f2e8;
+      --paper-deep: #eee3ce;
+      --rust: #a74329;
+      --gold: #be8a32;
+      --teal: #1f665d;
+      --line: rgba(23,33,43,.15);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Libre Franklin", sans-serif; color: var(--ink); background: var(--paper); }
+    h1, h2, h3 { font-family: "Playfair Display", serif; }
+    .archive-grid {
+      background-image: linear-gradient(rgba(23,33,43,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(23,33,43,.045) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .paper-grain { position: relative; overflow: hidden; }
+    .paper-grain::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .2;
+      background-image: radial-gradient(rgba(23,33,43,.15) .55px, transparent .55px);
+      background-size: 5px 5px; mix-blend-mode: multiply;
+    }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ""; position: absolute; height: 2px; left: 0; right: 0; bottom: -7px; background: var(--rust); transform: scaleX(0); transition: .2s ease; }
+    .nav-link.active::after, .nav-link:hover::after { transform: scaleX(1); }
+    .mirror-orb {
+      background: radial-gradient(circle at 35% 28%, #fff7de 0 9%, #d5b36e 10% 11%, #315d63 12% 43%, #17363d 44% 64%, #d5b36e 65% 68%, #fbf2dc 69%);
+      box-shadow: inset 18px 12px 20px rgba(255,255,255,.24), 0 28px 55px rgba(23,33,43,.2);
+    }
+    .reveal-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+    .reveal-panel > div { overflow: hidden; }
+    .is-open .reveal-panel { grid-template-rows: 1fr; }
+    .accordion-button[aria-expanded="true"] .plus { transform: rotate(45deg); }
+    .plus { transition: transform .2s ease; }
+    .value-card.selected { border-color: var(--rust); box-shadow: 7px 7px 0 rgba(167,67,41,.16); transform: translateY(-3px); }
+    .stage.selected { background: #17363d; color: #fff7de; border-color: #17363d; }
+    .stage.selected .stage-num { color: #e4bd70; }
+    .focus-ring:focus-visible { outline: 3px solid #be8a32; outline-offset: 4px; }
+    @media (max-width: 760px) {
+      .desktop-nav { display: none; }
+      .mirror-orb { width: 230px; height: 230px; }
+    }
+  </style>
+</head>
+<body class="w-full archive-grid" style="background: rgb(247, 242, 232);">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 border-b backdrop-blur-md" style="background: rgba(247,242,232,.92); border-color: var(--line)">
+    <nav aria-label="Navigasi utama" class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 lg:px-8">
+      <a href="#beranda" class="focus-ring inline-flex items-center gap-3 no-underline" aria-label="Beranda">
+        <img src="logo-um.png" alt="Logo Universitas Negeri Malang" class="h-9 w-auto object-contain transition-transform hover:opacity-90">
+      </a>
+      <div class="desktop-nav flex items-center gap-6 text-sm font-semibold">
+        <a class="nav-link focus-ring" href="#beranda">Beranda</a>
+        <a class="nav-link focus-ring" href="#epistemologi">Epistemologi</a>
+        <a class="nav-link focus-ring" href="#aksiologi">Aksiologi</a>
+        <a class="nav-link focus-ring" href="#kurikulum">Kurikulum</a>
+        <a class="nav-link focus-ring" href="#kesimpulan">Kesimpulan</a>
+      </div>
+      <a href="#materi" class="focus-ring rounded-full px-5 py-2 text-sm font-bold no-underline transition hover:opacity-90" style="background: rgb(23, 54, 61); color: rgb(255, 247, 222);">Mulai</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Beranda / Hero Section -->
+    <section id="beranda" class="paper-grain relative border-b" style="border-color: var(--line)">
+      <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.2fr_.8fr] lg:px-8 lg:py-28">
+        <div class="relative z-10">
+          <p class="mb-5 text-xs font-bold uppercase tracking-[.22em]" style="color: rgb(167, 67, 41);">Filsafat Pendidikan Sejarah</p>
+          <h1 class="max-w-3xl leading-[1.08] text-3xl md:text-5xl" style="color: rgb(23, 33, 43); font-weight: 700;">Sejarah sebagai Cermin Bangsa</h1>
+          <p class="mt-5 text-xl font-semibold leading-relaxed" style="color: rgb(31, 102, 93);">Epistemologi dan Aksiologi dalam Kurikulum Pendidikan</p>
+          <p class="mt-6 max-w-2xl leading-8" style="color: rgb(67, 81, 92);">Sejarah bukan sekadar hafalan tanggal, melainkan sarana refleksi untuk membentuk karakter dan peradaban bangsa.</p>
+          <a href="#materi" class="focus-ring mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-bold no-underline transition hover:-translate-y-0.5 hover:shadow-md" style="background: rgb(167, 67, 41); color: rgb(255, 255, 255);">Jelajahi Materi</a>
+        </div>
+        <div class="relative mx-auto flex min-h-[310px] w-full items-center justify-center">
+          <div class="mirror-orb h-[290px] w-[290px] rounded-full"></div>
+          <div class="absolute -bottom-2 -left-1 rounded-sm border px-4 py-3 text-xs font-bold uppercase tracking-[.16em]" style="background: #fff7de; border-color: #be8a32; color: #17212b; transform: rotate(-5deg);">
+            Refleksi • Kritik • Aksi
+          </div>
+          <div class="absolute -right-3 top-8 h-20 w-20 border border-dashed" style="border-color: #a74329;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Titik Berangkat -->
+    <section id="materi" class="mx-auto max-w-6xl px-5 py-20 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(167, 67, 41);">Titik Berangkat</p>
+          <h2 class="mt-3 text-2xl md:text-3xl font-bold leading-tight" style="color: rgb(23, 33, 43);">Mengapa sejarah penting?</h2>
+        </div>
+        <div class="border-l-4 pl-6" style="border-color: #be8a32;">
+          <p class="text-lg leading-8" style="color: rgb(67, 81, 92);">Sejarah tidak dapat dipisahkan dari negara, daerah, dan wilayah. Indonesia memiliki rangkaian peristiwa sejarah yang beragam; kekayaan pengalaman masa lalu ini menjadi ruang belajar untuk memahami perjalanan bangsa.</p>
+          <p class="mt-5 font-semibold leading-7" style="color: rgb(31, 102, 93);">Pertanyaan utamanya: apakah sejarah bangsa Indonesia dapat menjadi cermin bagi generasi bangsa berikutnya?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dua Dimensi -->
+    <section class="border-y py-20" style="background: #eee3ce; border-color: var(--line);">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+        <div class="max-w-2xl">
+          <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(167, 67, 41);">Lensa Membaca Masa Lalu</p>
+          <h2 class="mt-3 text-2xl md:text-3xl font-bold leading-tight" style="color: rgb(23, 33, 43);">Dua dimensi untuk membaca sejarah</h2>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <!-- Epistemologi Card -->
+          <article id="dimension-epi" class="dimension-card rounded-xl border p-6 transition" style="background: #fffaf0; border-color: #c9b995;">
+            <button type="button" class="focus-ring flex w-full items-start justify-between text-left" aria-expanded="false" aria-controls="dimension-epi-detail">
+              <span>
+                <span class="inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest" style="background: rgb(217, 235, 229); color: rgb(31, 102, 93);">Bagaimana kita tahu?</span>
+                <h3 class="mt-4 text-2xl md:text-3xl font-bold" style="color: rgb(23, 33, 43);">Epistemologi</h3>
+              </span>
+              <i class="plus mt-2" data-lucide="plus" width="23" style="color: #a74329;"></i>
+            </button>
+            <p class="mt-4 leading-7" style="color: rgb(67, 81, 92);">Membahas bagaimana pengetahuan sejarah diperoleh, diuji, dan dipertanggungjawabkan.</p>
+            <div id="dimension-epi-detail" class="reveal-panel">
+              <div>
+                <p class="mt-5 border-t pt-5 text-sm leading-6" style="border-color: rgb(223, 210, 183); color: rgb(67, 81, 92);">Fokusnya meliputi sumber, keandalan, metode, objektivitas, serta peran penafsir dalam merekonstruksi masa lalu.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Aksiologi Card -->
+          <article id="dimension-aksi" class="dimension-card rounded-xl border p-6 transition" style="background: #fffaf0; border-color: #c9b995;">
+            <button type="button" class="focus-ring flex w-full items-start justify-between text-left" aria-expanded="false" aria-controls="dimension-aksi-detail">
+              <span>
+                <span class="inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest" style="background: rgb(244, 222, 215); color: rgb(167, 67, 41);">Untuk apa dipelajari?</span>
+                <h3 class="mt-4 text-2xl md:text-3xl font-bold" style="color: rgb(23, 33, 43);">Aksiologi</h3>
+              </span>
+              <i class="plus mt-2" data-lucide="plus" width="23" style="color: #a74329;"></i>
+            </button>
+            <p class="mt-4 leading-7" style="color: rgb(67, 81, 92);">Membahas alasan sejarah dipelajari, nilai yang dihasilkan, dan tujuan moralnya.</p>
+            <div id="dimension-aksi-detail" class="reveal-panel">
+              <div>
+                <p class="mt-5 border-t pt-5 text-sm leading-6" style="border-color: rgb(223, 210, 183); color: rgb(67, 81, 92);">Aksiologi mengarahkan sejarah menjadi pembelajaran reflektif yang menumbuhkan etika, empati, dan tanggung jawab.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Epistemologi Section -->
+    <section id="epistemologi" class="mx-auto max-w-6xl px-5 py-20 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-[1fr_.85fr]">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(31, 102, 93);">Dimensi Pertama</p>
+          <h2 class="mt-3 text-2xl md:text-3xl font-bold leading-tight" style="color: rgb(23, 33, 43);">Epistemologi: menilai jalan menuju pengetahuan sejarah</h2>
+          <p class="mt-6 leading-8" style="color: rgb(67, 81, 92);">Epistemologi pendidikan sejarah mengkaji sumber, organisasi, keandalan, hakikat, dan nilai pengetahuan sejarah. Ia membedakan pengetahuan sebagai proses metodologis—cara memperolehnya—dengan pengetahuan sebagai hasil berupa narasi atau catatan sejarah. Uji kebenaran, batas objektivitas, subjektivitas, serta metodologi induktif, deduktif, positivisme, kontemplatif, dan dialektika menjadi bagian dari pembacaan ini. Penafsiran sejarah juga perlu peka terhadap pengaruh budaya, ideologi, politik, dan strategi kekuasaan.</p>
+        </div>
+        <aside class="rounded-xl p-7 flex flex-col justify-center" style="background: #17363d;">
+          <p class="text-xs font-bold uppercase tracking-[.16em]" style="color: rgb(228, 189, 112);">Catatan Metodologis</p>
+          <p class="mt-4 leading-7" style="color: rgb(255, 247, 222);">Pengetahuan sejarah bukan hanya kumpulan fakta. Ia adalah hasil penelusuran, pengujian, dan penafsiran yang perlu disadari batas-batas objektivitasnya.</p>
+        </aside>
+      </div>
+
+      <div class="mt-16">
+        <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(167, 67, 41);">Subbagian Interaktif</p>
+        <h3 class="mt-3 text-xl font-bold" style="color: rgb(23, 33, 43);">Melampaui hafalan</h3>
+        <div class="mt-7 grid gap-4">
+          <!-- Accordion 1 -->
+          <article class="accordion-card rounded-lg border" style="background: #fffaf0; border-color: #d8cdb7;">
+            <button class="accordion-button focus-ring flex w-full items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+              <span>
+                <span class="mr-4 text-sm font-bold" style="color: rgb(167, 67, 41);">01</span>
+                <span class="font-bold" style="color: rgb(23, 33, 43);">Keterampilan berpikir historis</span>
+              </span>
+              <i class="plus" data-lucide="plus" width="21"></i>
+            </button>
+            <div class="reveal-panel">
+              <div>
+                <p class="border-t px-6 py-5 leading-7" style="border-color: rgb(229, 218, 197); color: rgb(67, 81, 92);">Pengetahuan sejarah di kelas tidak boleh berhenti sebagai doktrin pasif. Peserta didik perlu diajak berlatih keterampilan berpikir historis agar dapat memahami hubungan antara bukti, penafsiran, dan konteks masa lalu.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Accordion 2 -->
+          <article class="accordion-card rounded-lg border" style="background: #fffaf0; border-color: #d8cdb7;">
+            <button class="accordion-button focus-ring flex w-full items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+              <span>
+                <span class="mr-4 text-sm font-bold" style="color: rgb(167, 67, 41);">02</span>
+                <span class="font-bold" style="color: rgb(23, 33, 43);">Kritik sumber dan literasi historis</span>
+              </span>
+              <i class="plus" data-lucide="plus" width="21"></i>
+            </button>
+            <div class="reveal-panel">
+              <div>
+                <p class="border-t px-6 py-5 leading-7" style="border-color: rgb(229, 218, 197); color: rgb(67, 81, 92);">Kurikulum perlu mengajarkan cara menelusuri sumber primer dan sekunder, membedakan fakta historis dari mitos, serta menghindari bias narasi ketika memahami suatu peristiwa.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Accordion 3 -->
+          <article class="accordion-card rounded-lg border" style="background: #fffaf0; border-color: #d8cdb7;">
+            <button class="accordion-button focus-ring flex w-full items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+              <span>
+                <span class="mr-4 text-sm font-bold" style="color: rgb(167, 67, 41);">03</span>
+                <span class="font-bold" style="color: rgb(23, 33, 43);">Analisis multi-perspektif</span>
+              </span>
+              <i class="plus" data-lucide="plus" width="21"></i>
+            </button>
+            <div class="reveal-panel">
+              <div>
+                <p class="border-t px-6 py-5 leading-7" style="border-color: rgb(229, 218, 197); color: rgb(67, 81, 92);">Dinamika masa lalu perlu dibaca dari berbagai sudut pandang agar pembelajaran tidak terjebak dalam glorifikasi semata, melainkan menuju pemahaman struktural yang lebih utuh.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aksiologi Section -->
+    <section id="aksiologi" class="border-y py-20" style="background: #f2eadb; border-color: var(--line);">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[1fr_.8fr]">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(167, 67, 41);">Dimensi Kedua</p>
+            <h2 class="mt-3 text-2xl md:text-3xl font-bold leading-tight" style="color: rgb(23, 33, 43);">Aksiologi: nilai guna dan tujuan moral sejarah</h2>
+            <p class="mt-6 leading-8" style="color: rgb(67, 81, 92);">Dalam filsafat pendidikan sejarah, aksiologi mengkaji nilai, etika, tujuan, dan prinsip yang menjadi dasar studi serta pengajaran sejarah. Dimensi ini menanyakan manfaat apa yang dapat diperoleh peserta didik dari masa lalu dan bagaimana sejarah menuntun pembentukan sikap.</p>
+          </div>
+          <div class="rounded-xl border p-6 flex flex-col justify-center" style="background: #fffaf0; border-color: #c9b995;">
+            <p class="font-bold text-lg" style="color: rgb(31, 102, 93);">Epistemologi dan aksiologi</p>
+            <p class="mt-3 leading-7" style="color: rgb(67, 81, 92);">Epistemologi bertanya “bagaimana pengetahuan sejarah diperoleh dan diuji?” Aksiologi bertanya “mengapa sejarah perlu dipelajari, nilai apa yang dihasilkan, dan tujuan moral apa yang dituju?”</p>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <p class="mb-5 text-sm font-semibold" style="color: rgb(31, 102, 93);">Pilih satu kartu nilai untuk membaca penjelasannya.</p>
+          <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <button class="value-card focus-ring rounded-xl border p-5 text-left transition" data-value="educative" style="background: #fffaf0; border-color: #d8cdb7;">
+              <span class="mb-4 inline-flex rounded-full p-2" style="background: #f4ded7; color: #a74329;"><i data-lucide="book-open" width="20"></i></span>
+              <h3 class="text-lg font-bold" style="color: rgb(23, 33, 43);">Nilai edukatif</h3>
+              <p class="mt-2 text-sm leading-6" style="color: rgb(67, 81, 92);">Mengambil hikmah dan tidak mengulangi kesalahan.</p>
+            </button>
+            <button class="value-card focus-ring rounded-xl border p-5 text-left transition" data-value="identity" style="background: #fffaf0; border-color: #d8cdb7;">
+              <span class="mb-4 inline-flex rounded-full p-2" style="background: #d9ebe5; color: #1f665d;"><i data-lucide="landmark" width="20"></i></span>
+              <h3 class="text-lg font-bold" style="color: rgb(23, 33, 43);">Identitas &amp; kebangsaan</h3>
+              <p class="mt-2 text-sm leading-6" style="color: rgb(67, 81, 92);">Menguatkan kesadaran nasional, budaya, dan jati diri.</p>
+            </button>
+            <button class="value-card focus-ring rounded-xl border p-5 text-left transition" data-value="critical" style="background: #fffaf0; border-color: #d8cdb7;">
+              <span class="mb-4 inline-flex rounded-full p-2" style="background: #e6e0f0; color: #59477f;"><i data-lucide="scale" width="20"></i></span>
+              <h3 class="text-lg font-bold" style="color: rgb(23, 33, 43);">Kritis, moral, &amp; etis</h3>
+              <p class="mt-2 text-sm leading-6" style="color: rgb(67, 81, 92);">Menilai keputusan dan narasi dengan tanggung jawab.</p>
+            </button>
+            <button class="value-card focus-ring rounded-xl border p-5 text-left transition" data-value="inspire" style="background: #fffaf0; border-color: #d8cdb7;">
+              <span class="mb-4 inline-flex rounded-full p-2" style="background: #f5e7bd; color: #8b6220;"><i data-lucide="sparkles" width="20"></i></span>
+              <h3 class="text-lg font-bold" style="color: rgb(23, 33, 43);">Nilai inspiratif</h3>
+              <p class="mt-2 text-sm leading-6" style="color: rgb(67, 81, 92);">Perjuangan dan gagasan menjadi dorongan moral.</p>
+            </button>
+          </div>
+
+          <div class="mt-6 rounded-lg border-l-4 p-6" style="background: #fffaf0; border-color: #a74329;">
+            <p class="value-detail leading-7" data-detail="educative" style="color: rgb(67, 81, 92);">Nilai edukatif mengajak peserta didik mengambil hikmah dan iktibar dari masa lalu, sehingga kesalahan atau kegagalan tidak diulang begitu saja pada masa depan.</p>
+            <p class="value-detail hidden leading-7" data-detail="identity" style="color: rgb(67, 81, 92);">Nilai identitas dan kebangsaan membangun kesadaran nasional, memperkuat kesadaran budaya, serta membantu membentuk jati diri kebangsaan.</p>
+            <p class="value-detail hidden leading-7" data-detail="critical" style="color: rgb(67, 81, 92);">Nilai kritis, moral, dan etis mengajak peserta didik menilai dampak keputusan historis, sekaligus bersikap kritis terhadap kekuasaan, narasi dominan, dan ketidakadilan.</p>
+            <p class="value-detail hidden leading-7" data-detail="inspire" style="color: rgb(67, 81, 92);">Nilai inspiratif menjadikan perjuangan, gagasan, dan pencapaian tokoh sejarah sebagai sumber gagasan serta dorongan moral bagi generasi sekarang.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Arah Pembelajaran -->
+    <section class="mx-auto max-w-6xl px-5 py-20 lg:px-8">
+      <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(167, 67, 41);">Arah Pembelajaran</p>
+      <h2 class="mt-3 text-2xl md:text-3xl font-bold" style="color: rgb(23, 33, 43);">Tujuan akhir pembelajaran sejarah</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <article class="rounded-xl p-7" style="background: #17363d;">
+          <p class="text-xs font-bold uppercase tracking-[.18em]" style="color: rgb(228, 189, 112);">Fokus 01</p>
+          <p class="mt-4 text-lg leading-8" style="color: rgb(255, 247, 222);">Membentuk peserta didik yang memiliki kesadaran budaya, kemampuan berpikir kritis, dan minat ilmiah.</p>
+        </article>
+        <article class="rounded-xl p-7" style="background: #1f665d;">
+          <p class="text-xs font-bold uppercase tracking-[.18em]" style="color: rgb(245, 223, 158);">Fokus 02</p>
+          <p class="mt-4 text-lg leading-8" style="color: rgb(255, 255, 255);">Mendorong pembelajaran reflektif, empati, dan etika agar lahir warga negara yang bijaksana, beretika, dan bertanggung jawab.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Kurikulum Section -->
+    <section id="kurikulum" class="border-y py-20" style="background: #eee3ce; border-color: var(--line);">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[1fr_.9fr]">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(167, 67, 41);">Konteks Indonesia</p>
+            <h2 class="mt-3 text-2xl md:text-3xl font-bold leading-tight" style="color: rgb(23, 33, 43);">Relevansi dalam kurikulum pendidikan Indonesia</h2>
+            <p class="mt-6 leading-8" style="color: rgb(67, 81, 92);">Pendidikan sejarah berbeda dari ilmu sejarah murni karena menuntut peserta didik tidak hanya mengetahui peristiwa, tetapi juga memahami serta memetik hikmah dan nilai yang terkandung di dalamnya. Karena itu, pendidik perlu menghubungkan proses berpikir kritis dengan tujuan pembentukan karakter.</p>
+          </div>
+          <aside class="rounded-xl p-7" style="background: #fffaf0;">
+            <h3 class="text-xl font-bold" style="color: rgb(23, 33, 43);">Arah kurikulum nasional</h3>
+            <p class="mt-4 leading-7" style="color: rgb(67, 81, 92);">Kurikulum bertujuan mengembangkan kemampuan, membentuk watak dan peradaban bangsa yang bermartabat, serta mencerdaskan kehidupan bangsa. Pendidikan diarahkan agar peserta didik berkembang menjadi manusia yang beriman, berakhlak mulia, sehat, berilmu, cakap, kreatif, mandiri, demokratis, dan bertanggung jawab.</p>
+          </aside>
+        </div>
+
+        <div class="mt-16">
+          <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(31, 102, 93);">Alur Transformasi</p>
+          <h3 class="mt-3 text-xl font-bold" style="color: rgb(23, 33, 43);">Dari memori menuju tindakan bersejarah</h3>
+          <div class="mt-8 grid gap-4 md:grid-cols-3">
+            <button class="stage selected focus-ring rounded-xl border p-6 text-left transition" data-stage="heir" style="border-color: #c9b995;">
+              <span class="stage-num text-xs font-bold tracking-[.16em]" style="color: #a74329;">01</span>
+              <span class="mt-4 block font-bold" style="color: rgb(255, 247, 222);">Ahli waris sejarah</span>
+            </button>
+            <button class="stage focus-ring rounded-xl border p-6 text-left transition" data-stage="learner" style="background: #fffaf0; border-color: #c9b995; color: #17212b;">
+              <span class="stage-num text-xs font-bold tracking-[.16em]" style="color: #a74329;">02</span>
+              <span class="mt-4 block font-bold" style="color: rgb(23, 33, 43);">Pembelajar reflektif</span>
+            </button>
+            <button class="stage focus-ring rounded-xl border p-6 text-left transition" data-stage="agent" style="background: #fffaf0; border-color: #c9b995; color: #17212b;">
+              <span class="stage-num text-xs font-bold tracking-[.16em]" style="color: #a74329;">03</span>
+              <span class="mt-4 block font-bold" style="color: rgb(23, 33, 43);">Agen pembuat sejarah</span>
+            </button>
+          </div>
+          <div class="mt-5 rounded-lg border-l-4 p-6" style="background: #fffaf0; border-color: #be8a32;">
+            <p class="stage-detail leading-7" data-stage-detail="heir" style="color: rgb(67, 81, 92);">Peserta didik memulai dari kesadaran bahwa ia menerima warisan pengalaman, ingatan, dan pelajaran dari perjalanan bangsanya.</p>
+            <p class="stage-detail hidden leading-7" data-stage-detail="learner" style="color: rgb(67, 81, 92);">Warisan itu dipelajari secara kritis: sumber diuji, beragam perspektif dipertimbangkan, dan makna peristiwa direfleksikan.</p>
+            <p class="stage-detail hidden leading-7" data-stage-detail="agent" style="color: rgb(67, 81, 92);">Dengan pijakan pengetahuan dan kompas moral, peserta didik didorong mengambil peran bertanggung jawab dalam menghadapi tantangan modern.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kesimpulan Section -->
+    <section id="kesimpulan" class="mx-auto max-w-6xl px-5 py-20 lg:px-8">
+      <div class="rounded-2xl p-7 md:p-12" style="background: #17363d;">
+        <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(228, 189, 112);">Penutup</p>
+        <h2 class="mt-4 max-w-3xl text-2xl md:text-3xl font-bold leading-tight" style="color: rgb(255, 247, 222);">Sejarah sebagai cermin, kompas transformasi</h2>
+        <div class="mt-9 grid gap-5 md:grid-cols-3">
+          <p class="border-t pt-4 leading-7" style="border-color: rgb(82, 122, 121); color: rgb(233, 225, 207);">Sejarah membantu memahami akar terbentuknya masyarakat, hukum, dan konstitusi negara hari ini.</p>
+          <p class="border-t pt-4 leading-7" style="border-color: rgb(82, 122, 121); color: rgb(233, 225, 207);">Sejarah membentuk empati sosial, toleransi, dan kesadaran berbangsa dalam keberagaman.</p>
+          <p class="border-t pt-4 leading-7" style="border-color: rgb(82, 122, 121); color: rgb(233, 225, 207);">Sejarah memberi pijakan untuk menghadapi tantangan modern secara lebih bijaksana dan bertanggung jawab.</p>
+        </div>
+      </div>
+      <aside class="mt-8 rounded-xl border p-8" style="background: #fffaf0; border-color: #be8a32;">
+        <p class="text-xs font-bold uppercase tracking-[.2em]" style="color: rgb(167, 67, 41);">Kesimpulan</p>
+        <p class="mt-3 text-lg font-semibold leading-8" style="color: rgb(23, 33, 43);">Sejarah sangat dapat dan krusial dijadikan sebagai cermin bangsa apabila ditinjau melalui epistemologi dan aksiologi. Cermin itu harus jernih, kritis, reflektif, dan berorientasi pada pembentukan karakter.</p>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t" style="background: #eee3ce; border-color: var(--line);">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-8 text-sm md:flex-row md:items-center md:justify-between lg:px-8">
+      <p class="font-bold" style="color: rgb(23, 33, 43);">Cermin Bangsa</p>
+      <p style="color: rgb(67, 81, 92);">Materi edukasi filsafat pendidikan sejarah</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" type="button" class="focus-ring fixed bottom-5 right-5 hidden rounded-full p-3 shadow-lg transition hover:scale-105" style="background: #a74329; color: #ffffff;" aria-label="Kembali ke atas">
+    <i data-lucide="arrow-up" width="20"></i>
+  </button>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Inisialisasi ikon Lucide
+      lucide.createIcons();
+
+      // Accordion handler (Dimensi & Subbagian)
+      document.querySelectorAll(".dimension-card, .accordion-card").forEach((card) => {
+        const button = card.querySelector("button");
+        button.addEventListener("click", () => {
+          const open = card.classList.toggle("is-open");
+          button.setAttribute("aria-expanded", String(open));
+        });
+      });
+
+      // Kartu Nilai (Tab Switching)
+      const valueCards = document.querySelectorAll(".value-card");
+      const valueDetails = document.querySelectorAll(".value-detail");
+      if (valueCards.length > 0) {
+        valueCards[0].classList.add("selected");
+        valueCards.forEach((card) => {
+          card.addEventListener("click", () => {
+            const selected = card.dataset.value;
+            valueCards.forEach((item) => item.classList.toggle("selected", item === card));
+            valueDetails.forEach((detail) => detail.classList.toggle("hidden", detail.dataset.detail !== selected));
+          });
+        });
+      }
+
+      // Alur Transformasi Stages
+      const stages = document.querySelectorAll(".stage");
+      const stageDetails = document.querySelectorAll(".stage-detail");
+      stages.forEach((stage) => {
+        stage.addEventListener("click", () => {
+          const selected = stage.dataset.stage;
+          stages.forEach((item) => {
+            const isMatch = item === stage;
+            item.classList.toggle("selected", isMatch);
+            if (isMatch) {
+              item.style.background = "#17363d";
+              item.style.color = "#fff7de";
+              item.querySelector(".canva-text, span:last-child").style.color = "rgb(255, 247, 222)";
+            } else {
+              item.style.background = "#fffaf0";
+              item.style.color = "#17212b";
+              item.querySelector(".canva-text, span:last-child").style.color = "rgb(23, 33, 43)";
+            }
+          });
+          stageDetails.forEach((detail) => detail.classList.toggle("hidden", detail.dataset.stageDetail !== selected));
+        });
+      });
+
+      // Tombol Back to Top
+      const topButton = document.getElementById("back-to-top");
+      topButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+      window.addEventListener("scroll", () => {
+        topButton.classList.toggle("hidden", window.scrollY < 650);
+      }, { passive: true });
+
+      // Active state pada navigasi saat scrolling
+      const sections = ["beranda", "epistemologi", "aksiologi", "kurikulum", "kesimpulan"].map(id => document.getElementById(id));
+      const links = document.querySelectorAll(".nav-link");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id));
+          }
+        });
+      }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.02 });
+
+      sections.forEach(section => {
+        if (section) observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>
